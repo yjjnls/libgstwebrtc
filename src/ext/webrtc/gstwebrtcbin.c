@@ -1757,7 +1757,6 @@ static void
 gst_webrtc_bin_create_offer (GstWebRTCBin * webrtc,
     const GstStructure * options, GstPromise * promise)
 {
-  printf("~~~~~~~~~~~~~~~~~~~~\n");
   struct create_sdp *data = g_new0 (struct create_sdp, 1);
 
   if (options)
