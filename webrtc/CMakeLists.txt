@@ -46,14 +46,10 @@ include_directories($ENV{GSTREAMER_ROOT}/include/nice)
 link_directories($ENV{GSTREAMER_ROOT}/lib $ENV{GSTREAMER_ROOT}/bin)
 
 add_library(${project_name}  SHARED ${LWS_SOURCES})
-target_link_libraries(${project_name} ${_MODULES_LIBRARIES}
+target_link_libraries(${project_name}   ${GST_MODULES_LIBRARIES}
                                         gstsdp-1.0
                                         nice
                                         gio-2.0
-                                        ssl
-                                        crypto
-                                        # intl
-                                        # ws2_32
                                         gstwebrtc-1.0)
                 
 ADD_DEFINITIONS( -DGST_USE_UNSTABLE_API  )

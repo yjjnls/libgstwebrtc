@@ -45,7 +45,7 @@ include_directories($ENV{GSTREAMER_ROOT}/lib/glib-2.0/include)
 link_directories($ENV{GSTREAMER_ROOT}/lib $ENV{GSTREAMER_ROOT}/bin)
 
 add_library(${project_name}  SHARED ${LWS_SOURCES})
-target_link_libraries(${project_name}  ${_MODULES_LIBRARIES}
+target_link_libraries(${project_name}   ${GST_MODULES_LIBRARIES}
                                         gstsdp-1.0
                                         gio-2.0
                                         ssl
