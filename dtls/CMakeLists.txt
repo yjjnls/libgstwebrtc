@@ -33,9 +33,9 @@ project_group(LWS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR})
 find_package(PkgConfig 0.29.1 REQUIRED)
 
 pkg_check_modules(GST_MODULES  REQUIRED
-                  gstreamer-1.0>=1.14.0
-                  gstreamer-base-1.0>=1.14.0
-                  )
+gstreamer-1.0>=1.14.0
+gstreamer-base-1.0>=1.14.0
+)
 
 include_directories($ENV{GSTREAMER_ROOT}/include)
 include_directories($ENV{GSTREAMER_ROOT}/include/gstreamer-1.0)
@@ -44,14 +44,16 @@ include_directories($ENV{GSTREAMER_ROOT}/lib/glib-2.0/include)
 
 link_directories($ENV{GSTREAMER_ROOT}/lib $ENV{GSTREAMER_ROOT}/bin)
 
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -Wl,-Bsymbolic") 
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wl,-Bsymbolic")  
 add_library(${project_name}  SHARED ${LWS_SOURCES})
 target_link_libraries(${project_name}   ${GST_MODULES_LIBRARIES}
                                         gstsdp-1.0
                                         gio-2.0
-                                        ssl
-                                        crypto
+                                        libssl.a
+                                        libcrypto.a
                                         )
-                
+
 # ADD_DEFINITIONS( -DGST_USE_UNSTABLE_API  )
 ADD_DEFINITIONS( -DPACKAGE_VERSION="1.14.0"  )
 ADD_DEFINITIONS( -DPACKAGE="gst-plugins-bad"  )
